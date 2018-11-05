@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:soap="http://cxf.apache.org/bindings/soap"
+	xsi:schemaLocation="http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://cxf.apache.org/bindings/soap http://cxf.apache.org/schemas/configuration/soap.xsd">
+
+<!-- 把要发布成webservice类，创建成bean -->
+<bean id="helloService" class="com.offcn.HelloServiceImpl"></bean>
+
+
+<!-- 通过cxf框架来发布webservice -->
+<jaxws:server id="cxfServer" address="/v1/hello">
+<!-- 声明要发布的bean -->
+<jaxws:serviceBean>
+	<ref bean="helloService"/>
+</jaxws:serviceBean>
+</jaxws:server>
+
+</beans>
